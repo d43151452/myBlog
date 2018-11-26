@@ -1,0 +1,61 @@
+{extend name="common/base"}
+
+{block name="content"}
+<div class="am-u-md-12 am-u-sm-12">
+    <p>
+        <button onclick="add()" class="am-btn am-btn-success">新增</button>
+    </p>
+    <table class="am-table">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>名称</th>
+                <th>最后修改时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach $sorts as $k => $v}
+            <tr>
+                <td>{$v.id}</td>
+                <td>{$v.sort_name}</td>
+                <td>{$v.update_time}</td>
+                <td>
+                    <button type="button" class="am-btn am-btn-primary">修改</button>
+                    <button type="button" class="am-btn am-btn-danger">删除</button>
+                </td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+</div>
+<div class="am-modal am-modal-prompt" tabindex="-1" id="my-prompt">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+            输入名字
+            <input type="text" class="am-modal-prompt-input">
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+        </div>
+    </div>
+</div>
+
+{/block}
+
+{block name="js"}
+<script>
+    function add() {
+        $('#my-prompt').modal({
+            relatedTarget: this,
+            onConfirm: function(e) {
+
+            },
+            onCancel: function(e) {
+                alert('不想说!');
+            }
+        });
+    }
+</script>
+{/block}
