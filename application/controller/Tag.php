@@ -4,9 +4,9 @@ namespace app\controller;
 
 use think\Controller;
 use think\Request;
-use app\model\Sorts;
+use app\model\Tags;
 
-class Sort extends Controller
+class Tag extends Controller
 {
     protected $middleware = ['Check'];
     /**
@@ -16,7 +16,7 @@ class Sort extends Controller
      */
     public function index()
     {
-        $data['sorts'] = Sorts::select();
+        $data['tags'] = Tags::select();
         return view('',$data);
     }
 
@@ -26,10 +26,10 @@ class Sort extends Controller
      * @param  \think\Request  $req
      * @return \think\Response
      */
-    public function save(Request $req, Sorts $sort)
+    public function save(Request $req, Tags $tag)
     {
         $data = $req->param();
-        $req = $sort->save($data);
+        $req = $tag->save($data);
         if($req){
            return $this->success('添加成功'); 
         }
@@ -45,9 +45,9 @@ class Sort extends Controller
      */
     public function update(Request $req, $id)
     {
-        $sort = Sorts::get($id);
-        $sort->sort_name = $req->sort_name;
-        if($sort->save()){
+        $tag = Tags::get($id);
+        $tag->tag_name = $req->tag_name;
+        if($tag->save()){
             return $this->success('修改成功');
         }
         return $this->error('修改失败');
@@ -61,8 +61,8 @@ class Sort extends Controller
      */
     public function delete($id)
     {
-        $sort = Sorts::get($id);
-        if($sort->delete()){
+        $tag = Tags::get($id);
+        if($tag->delete()){
             return $this->success('删除成功');
         }
         return $this->error('删除失败');

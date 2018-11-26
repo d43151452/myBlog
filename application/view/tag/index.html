@@ -5,7 +5,7 @@
     <ol class="am-breadcrumb">
         <li><a href="/" class="am-icon-home">首页</a></li>
         <li>系统管理</li>
-        <li class="am-active">分类管理</li>
+        <li class="am-active">标签管理</li>
     </ol>
     <p>
         <button onclick="add()" class="am-btn am-btn-success">新增</button>
@@ -14,19 +14,19 @@
         <thead>
             <tr>
                 <th>id</th>
-                <th>名称</th>
+                <th>标签名称</th>
                 <th>最后修改时间</th>
                 <th>操作</th>
             </tr>
         </thead>
         <tbody>
-            {foreach $sorts as $k => $v}
+            {foreach $tags as $k => $v}
             <tr>
                 <td>{$k+1}</td>
-                <td>{$v.sort_name}</td>
+                <td>{$v.tag_name}</td>
                 <td>{$v.update_time}</td>
                 <td>
-                    <button type="button" onclick="edit('{$v.id}','{$v.sort_name}')" class="am-btn am-btn-primary">修改</button>
+                    <button type="button" onclick="edit('{$v.id}','{$v.tag_name}')" class="am-btn am-btn-primary">修改</button>
                     <button type="button" onclick="del('{$v.id}')" class="am-btn am-btn-danger">删除</button>
                 </td>
             </tr>
@@ -81,7 +81,7 @@
         $('#add').modal({
             relatedTarget: this,
             onConfirm: function (e) {
-                location.href = '/sort/save.html?sort_name=' + e.data;
+                location.href = '/tag/save.html?tag_name=' + e.data;
             },
             onCancel: function (e) {
                 // alert('不想说!');
@@ -94,7 +94,7 @@
         $('#edit').modal({
             relatedTarget: this,
             onConfirm: function (e) {
-                location.href = '/sort/update/id/' + id + '.html?sort_name=' + e.data;
+                location.href = '/tag/update/id/' + id + '.html?tag_name=' + e.data;
             },
             onCancel: function (e) { }
         });
@@ -104,7 +104,7 @@
         $('#del').modal({
             relatedTarget: this,
             onConfirm: function (e) {
-                location.href = "/sort/delete/id/" + id + '.html';
+                location.href = "/tag/delete/id/" + id + '.html';
             },
             onCancel: function (e) { }
         });

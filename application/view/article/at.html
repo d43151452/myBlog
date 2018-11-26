@@ -1,0 +1,48 @@
+{extend name="common/base"}
+
+{block name="content"}
+<div class="am-u-md-12 am-u-sm-12">
+    <ol class="am-breadcrumb">
+        <li><a href="/" class="am-icon-home">首页</a></li>
+        <li>系统管理</li>
+        <li><a href="/article.html">文章管理</a></li>
+        <li class="am-active">标签</li>
+        <li>{$article.title}</li>
+    </ol>
+    <form class="am-form am-form-horizontal" action="/article/atSave/id/{$article.id}.html" method="POST">
+        <table class="am-table">
+            <thead>
+                <tr>
+                    <th>选项</th>
+                    <th>标签名称</th>
+                    <th>最后修改时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach $tags as $k => $v}
+                <tr>
+                    <td><input type="checkbox" {if $v.articles_id != null}checked{/if} value="{$v.id}" name="tags_id[]" id=""></td>
+                    <td>{$v.tag_name}</td>
+                    <td>{$v.update_time}</td>
+                </tr>
+                {/foreach}
+            </tbody>
+        </table>
+        <div class="am-form-group">
+            <label class="am-u-sm-1 am-form-label"></label>
+            <div class="am-u-sm-11">
+                <input type="submit" value="提交" class="am-btn am-btn-primary">
+            </div>
+        </div>
+    </form>
+</div>
+
+{/block}
+
+{block name="js"}
+<script>
+
+
+
+</script>
+{/block}
