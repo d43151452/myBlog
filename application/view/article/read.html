@@ -20,9 +20,9 @@
             <div class="am-article-hd">
                 <h1 class="am-article-title blog-text-center">{$article.title}</h1>
                 <p class="am-article-meta blog-text-center">
-                    <span><a href="#" class="blog-color">张亚泽 &nbsp;</a></span>-
-                    <span><a href="#">@汝河泫泽 &nbsp;</a></span>-
-                    <span><a href="#">{$article.update_time}</a></span>
+                    <span><span class="blog-color">张亚泽 &nbsp;</span></span>-
+                    <span><a href="/index/sort/id/{$article.sorts.id}.html">@{$article.sorts.sort_name} &nbsp;</a></span>-
+                    <span>{$article.update_time}</span>
                 </p>
             </div>
             <div class="am-article-bd">
@@ -34,15 +34,27 @@
             <div class="am-u-lg-4 am-u-md-5 am-u-sm-7 am-u-sm-centered blog-text-center">
                 <span class="am-icon-tags"> &nbsp;</span>
                 {foreach $article->tags as $k => $v}
-                <a href="#">{$v.tag_name}</a> &nbsp;
+                <a href="/index/tag/id/{$v.id}.html">{$v.tag_name}</a> &nbsp;
                 {/foreach}
 
             </div>
         </div>
         <hr>
         <ul class="am-pagination blog-article-margin">
-            <li class="am-pagination-prev"><a href="#" class="">&laquo; 一切的回顾</a></li>
-            <li class="am-pagination-next"><a href="">不远的未来 &raquo;</a></li>
+            <li class="am-pagination-prev">
+                {if $last}
+                <a href="/article/read/id/{$last.id}.html">&laquo; {$last.title}</a>
+                {else}
+                <a href="#" disabled>&laquo;</a>
+                {/if}
+            </li>
+            <li class="am-pagination-next">
+                {if $next}
+                <a href="/article/read/id/{$next.id}.html">{$next.title} &raquo;</a>
+                {else}
+                <a href="#" disabled>没有了</a>
+                {/if}
+            </li>
         </ul>
 
         <hr>

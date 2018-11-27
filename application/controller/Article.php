@@ -133,6 +133,8 @@ class Article extends Controller
         Articles::where('id', $id)->setInc('hits');
         $data['article'] = Articles::get($id);
         $data['comments'] = Comments::where('articles_id',$id)->select();
+        $data['next'] = Articles::where('id','>',$id)->field('id,title')->order('id','asc')->find();
+        $data['last'] = Articles::where('id','<',$id)->field('id,title')->order('id','desc')->find();
         return view('',$data);
     }
 

@@ -23,7 +23,7 @@
             <p><a href="" class="blog-continue">continue reading</a></p>
             <div>
                 {foreach $v->tags as $k2 => $v2}
-                <a style="font-size:12px;" href="#" class="blog-tag">{$v2.tag_name}</a>
+                <a style="font-size:12px;" href="/index/tags/id/{$v2.id}.html" class="blog-tag">{$v2.tag_name}</a>
                 {/foreach}
             </div>
         </div>
