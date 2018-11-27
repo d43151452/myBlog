@@ -6,6 +6,8 @@
 <div class="am-u-md-8 am-u-sm-12">
     <ol class="am-breadcrumb">
         <li><a href="/" class="am-active am-icon-home">首页</a></li>
+        <li>标签搜索</li>
+        <li>{$tag.tag_name}</li>
     </ol>
     {foreach $articles as $k => $v}
     <article class="am-g blog-entry-article">
@@ -14,10 +16,9 @@
         </div>
         <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
             <span><a href="javascript:;" class="blog-color">张亚泽 &nbsp;</a></span>
-            <span> @<a href="/index/sort/id/{$v.id}.html">{$v.sorts.sort_name}</a> &nbsp;</span>
+            <span> @<a href="/index/sort/id/{$v.id}.html">{$v.sorts.sort_name}</a>&nbsp;</span>
             <span>{$v.create_time}</span>
             <h1><a href="/article/read/id/{$v.id}.html">{$v.title}</a></h1>
-            
             <p>{$v.desc}</p>
             <p><a href="" class="blog-continue">continue reading</a></p>
             <div>

@@ -5,6 +5,7 @@ use think\Controller;
 use think\Request;
 use app\model\Articles;
 use app\model\Tags;
+use app\model\Sorts;
 
 class Index extends Controller
 {
@@ -46,7 +47,7 @@ class Index extends Controller
     }
 
     /**
-     * 处理登录
+     * 处理退出
      *
      * @return \think\Response
      */
@@ -54,5 +55,34 @@ class Index extends Controller
     {
         \Session::clear();
         return $this->success('退出成功');
+    }
+
+    /**
+     * 分类内容显示
+     *
+     * @return 
+     * @return \think\Response
+     */
+    public function sort($id)
+    {
+        $data['articles'] = Articles::where('sort_id',$id)->order('id', 'desc')->paginate(10);
+        $data['sort'] = Sorts::get($id);
+        return view('',$data);
+    }
+
+    /**
+     * 标签检索显示
+     *
+     * @return 
+     * @return \think\Response
+     */
+    public function tag($id)
+    {
+        $data['articles'] = Articles::where('id', 'in', function ($query) use ($id) {
+            $query->table('articles_tags')->where('tags_id', $id)->field('articles_id');
+        })->order('id', 'desc')->paginate(10);
+
+        $data['tag'] = Tags::get($id);
+        return view('',$data);
     }
 }

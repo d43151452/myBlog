@@ -28,7 +28,7 @@
     <header class="am-g am-g-fixed blog-fixed blog-text-center blog-header">
         <div class="am-u-sm-8 am-u-sm-centered">
             <div class="logo">泽</div>
-            <h2 class="am-hide-sm-only">一个记录自己的地方，一个阐释心灵的地方</h2>
+            <h3 class="am-hide-sm-only">一个记录自己的地方，一个阐释心灵的地方</h3>
         </div>
     </header>
     <hr>
@@ -45,7 +45,7 @@
                     </a>
                     <ul class="am-dropdown-content">
                         {foreach :model('sorts')->select() as $k => $v}
-                        <li><a href="#">{$v.sort_name}</a></li>
+                        <li><a href="/index/sort/id/{$v.id}.html">{$v.sort_name}</a></li>
                         {/foreach}
                     </ul>
                 </li>

@@ -15,7 +15,7 @@
             <tr>
                 <th>id</th>
                 <th width="100">标题</th>
-                <th width="200">简介</th>
+                <th width="150">分类</th>
                 <th width="100">封面</th>
                 <th width="80">评论数</th>
                 <th width="150">标签</th>
@@ -28,7 +28,7 @@
             <tr>
                 <td>{$k+1}</td>
                 <td><a href="/article/read/id/{$v.id}.html">{$v.title}</a></td>
-                <td>{$v.desc}</td>
+                <td>{$v.sorts.sort_name|default="分类好像消失了"}</td>
                 <td><img style="width: 100%;" src="{$v.cover}" alt=""></td>
                 <td>{$v.comments}</td>
                 <td>

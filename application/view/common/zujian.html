@@ -2,22 +2,24 @@
     <div class="blog-sidebar-widget blog-bor">
         <h2 class="blog-text-center blog-title"><span>About ME</span></h2>
         <img src="/static/i/avatar.jpg" alt="about me" class="blog-entry-img">
-        <p>张亚泽</p>
+        <h3>张亚泽</h3>
         <p>
-            2017年9月入坑IT，热衷前端与PHP
+            2017年9月入坑IT，目前擅长前端与PHP等相关技术栈
         </p>
-        <p>爱编程，爱思考，喜欢追求更为优雅的东西，也许能让代码少些一点，让速度更快一点，这是我最爱思考的东西</p>
+        <p>爱编程，爱思考，喜欢以不一样的思路面对同样的问题，如果给我足够的时间，也许我会想法翘起地球</p>
+        <p>做了足够时间的伸手党，我也要将自己的东西慢慢整理起来，给自己，也给需要的人，所以，这个网站将会在岁月中满满丰富起来</p>
+        <p>欢迎来撩~</p>
     </div>
     <div class="blog-clear-margin blog-sidebar-widget blog-bor am-g ">
         <h2 class="blog-title"><span>TAG cloud</span></h2>
         <div class="am-u-sm-12 blog-clear-padding">
             {foreach :model('tags')->select() as $k => $v}
-            <a href="#" class="blog-tag">{$v.tag_name}</a>
+            <a href="/index/tag/id/{$v.id}.html" class="blog-tag">{$v.tag_name}</a>
             {/foreach}
         </div>
     </div>
     <div class="blog-sidebar-widget blog-bor">
-        <h2 class="blog-title"><span>文章</span></h2>
+        <h2 class="blog-title"><span>推荐文章</span></h2>
         <ul class="am-list">
             <li><a href="#">每个人都有一个死角， 自己走不出来，别人也闯不进去。</a></li>
             <li><a href="#">我把最深沉的秘密放在那里。</a></li>

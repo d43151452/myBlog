@@ -5,6 +5,7 @@ namespace app\controller;
 use think\Controller;
 use think\Request;
 use app\model\Tags;
+use app\model\ArticlesTags;
 
 class Tag extends Controller
 {
@@ -65,6 +66,7 @@ class Tag extends Controller
         if($tag->delete()){
             return $this->success('删除成功');
         }
+        ArticlesTags::where('tags_id',$id)->delete();
         return $this->error('删除失败');
     }
 }

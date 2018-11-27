@@ -132,6 +132,7 @@ class Article extends Controller
     {
         Articles::where('id', $id)->setInc('hits');
         $data['article'] = Articles::get($id);
+        $data['comments'] = Comments::where('articles_id',$id)->select();
         return view('',$data);
     }
 
@@ -148,6 +149,7 @@ class Article extends Controller
         $val = [
             'nick_name|昵称'=>'require|max:10',
             'content|内容'=>'require|max:255',
+            'captcha|验证码'=>'require|captcha'
         ];
         if($req->url){
             $val['url|网址'] = 'url';
@@ -161,12 +163,13 @@ class Article extends Controller
         if(!$validate->check($data)){
             return $this->error($validate->getError());
         }
-        $data['article_id'] = $req->id;
+        $data['articles_id'] = $id;
+        Articles::where('id', $id)->setInc('comments');
         $info = Comments::create($data);
         if($info){
-            return $this->success('添加成功');
+            return $this->success('评论成功');
         }
-        return $this->error('添加失败');
+        return $this->error('评论失败');
     }
 
     /**
