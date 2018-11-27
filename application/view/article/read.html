@@ -1,0 +1,116 @@
+{extend name="common/base"}
+
+{block name="title"}{$article.title}{/block}
+
+{block name="link"}
+<link rel="stylesheet" href="/static/styles/default.css">
+<script src="/static/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+{/block}
+
+{block name="content"}
+<div class="am-u-md-12 am-u-sm-12">
+    <ol class="am-breadcrumb">
+        <li><a href="/" class="am-icon-home">首页</a></li>
+        <li>文章详情</li>
+        <li class="am-active">{$article.title}</li>
+    </ol>
+    <div class="am-u-md-8 am-u-sm-12">
+        <article class="am-article blog-article-p">
+            <div class="am-article-hd">
+                <h1 class="am-article-title blog-text-center">{$article.title}</h1>
+                <p class="am-article-meta blog-text-center">
+                    <span><a href="#" class="blog-color">张亚泽 &nbsp;</a></span>-
+                    <span><a href="#">@汝河泫泽 &nbsp;</a></span>-
+                    <span><a href="#">{$article.update_time}</a></span>
+                </p>
+            </div>
+            <div class="am-article-bd">
+                {$article.content|raw}
+            </div>
+        </article>
+
+        <div class="am-g blog-article-widget blog-article-margin">
+            <div class="am-u-lg-4 am-u-md-5 am-u-sm-7 am-u-sm-centered blog-text-center">
+                <span class="am-icon-tags"> &nbsp;</span>
+                {foreach $article->tags as $k => $v}
+                <a href="#">{$v.tag_name}</a> &nbsp;
+                {/foreach}
+
+            </div>
+        </div>
+
+        <hr>
+        <div class="am-g blog-author blog-article-margin">
+            <div class="am-u-sm-3 am-u-md-3 am-u-lg-2">
+                <img src="/static/i/avatar.jpg" alt="" class="blog-author-img am-circle">
+            </div>
+            <div class="am-u-sm-9 am-u-md-9 am-u-lg-10">
+                <h3><span>作者 &nbsp;: &nbsp;</span><span class="blog-color">张亚泽</span></h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat.</p>
+            </div>
+        </div>
+        <hr>
+        <ul class="am-pagination blog-article-margin">
+            <li class="am-pagination-prev"><a href="#" class="">&laquo; 一切的回顾</a></li>
+            <li class="am-pagination-next"><a href="">不远的未来 &raquo;</a></li>
+        </ul>
+
+        <hr>
+        <h3 class="blog-comment">评论</h3>
+        <ul class="am-comments-list am-comments-list-flip">
+            <li class="am-comment">
+                <a href="#link-to-user-home">
+                    <img src="/static/i/total_avatar.png" alt="" class="am-comment-avatar" width="48" height="48" />
+                </a>
+
+                <div class="am-comment-main">
+                    <div class="am-comment-hd">
+                        <!--<h3 class="am-comment-title">评论标题</h3>-->
+                        <div class="am-comment-meta">
+                            <a href="#link-to-user" class="am-comment-author">某人</a>
+                            评论于 <time datetime="2013-07-27T04:54:29-07:00">2014-7-12 15:30</time>
+                        </div>
+                    </div>
+
+                    <div class="am-comment-bd">
+                        <p>piasjdpofijaspodifj</p>
+                        <blockquote>作者回复：感谢</blockquote>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <form action="/article/comment/id/{$article.id}.html" method="POST" class="am-form am-g">
+            <fieldset>
+                <div class="am-form-group am-u-sm-4 blog-clear-left">
+                    <input name="nick_name" maxlength="10" type="text" class="" required placeholder="昵称">
+                </div>
+                <div class="am-form-group am-u-sm-4">
+                    <input name="email" type="email" class="" title="可不填" placeholder="邮箱(仅用作回复，不公开)">
+                </div>
+
+                <div class="am-form-group am-u-sm-4 blog-clear-right">
+                    <input name="url" type="url" class="" title="显示后点击昵称即可跳转至该url，可不填" placeholder="网站(显示后点击昵称即可跳转至该url)">
+                </div>
+
+                <div class="am-form-group">
+                    <textarea name="content" maxlength="255" class="" rows="5" placeholder="一字千金"></textarea>
+                </div>
+
+                <p><button type="submit" class="am-btn am-btn-default">发表评论</button></p>
+            </fieldset>
+        </form>
+
+        <hr>
+    </div>
+    {include file="common/zujian"}
+</div>
+
+{/block}
+
+{block name="js"}
+
+{/block}

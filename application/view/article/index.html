@@ -27,7 +27,7 @@
             {foreach $articles as $k => $v}
             <tr>
                 <td>{$k+1}</td>
-                <td>{$v.title}</td>
+                <td><a href="/article/read/id/{$v.id}.html">{$v.title}</a></td>
                 <td>{$v.desc}</td>
                 <td><img style="width: 100%;" src="{$v.cover}" alt=""></td>
                 <td>{$v.comments}</td>
@@ -47,17 +47,38 @@
         </tbody>
     </table>
 </div>
+<div class="am-modal am-modal-prompt" tabindex="-1" id="del">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+            你确定要删除吗？
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+        </div>
+    </div>
+</div>
 
 {/block}
 
 {block name="js"}
 <script>
     function edit(id){
-        
+        location.href = '/article/edit/id/'+id+'.html';        
     }
 
     function tag(id){
         location.href = '/article/at/id/'+id+'.html';
+    }
+
+    function del(id) {
+        $('#del').modal({
+            relatedTarget: this,
+            onConfirm: function (e) {
+                location.href = "/article/delete/id/" + id + '.html';
+            },
+            onCancel: function (e) { }
+        });
     }
 </script>
 {/block}

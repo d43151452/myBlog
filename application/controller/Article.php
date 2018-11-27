@@ -8,10 +8,16 @@ use app\model\Articles;
 use app\model\Tags;
 use app\model\ArticlesTags;
 use app\model\Sorts;
+use app\model\Comments;
 use think\Image;
 
 class Article extends Controller
 {
+    protected $middleware = [
+        'Check'=>[
+            'except'=>['read','comment']
+        ]
+    ];
     /**
      * 显示文章列表
      *
@@ -75,8 +81,9 @@ class Article extends Controller
         $data['cover'] = '/upload/'.$info->getSaveName();
         $res = Articles::create($data);
         if($res){
-            return '成功';
+            return $this->success('添加成功','/article');
         }
+        return $this->error('添加失败');
     }
 
     /**
@@ -123,7 +130,43 @@ class Article extends Controller
      */
     public function read($id)
     {
-        //
+        Articles::where('id', $id)->setInc('hits');
+        $data['article'] = Articles::get($id);
+        return view('',$data);
+    }
+
+     /**
+     * 提交评论
+     *
+     * @param  int  $id
+     * @param  \think\Request  $req
+     * @return \think\Response
+     */
+    public function comment(Request $req, $id)
+    {
+        $data = $req->post();
+        $val = [
+            'nick_name|昵称'=>'require|max:10',
+            'content|内容'=>'require|max:255',
+        ];
+        if($req->url){
+            $val['url|网址'] = 'url';
+        }
+
+        if($req->email){
+            $val['email|邮箱'] = 'email';
+        }
+
+        $validate = \Validate::make($val);
+        if(!$validate->check($data)){
+            return $this->error($validate->getError());
+        }
+        $data['article_id'] = $req->id;
+        $info = Comments::create($data);
+        if($info){
+            return $this->success('添加成功');
+        }
+        return $this->error('添加失败');
     }
 
     /**
@@ -134,7 +177,9 @@ class Article extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['sorts'] = Sorts::select();
+        $data['article'] = Articles::get($id);
+        return view('',$data);        
     }
 
     /**
@@ -144,9 +189,33 @@ class Article extends Controller
      * @param  int  $id
      * @return \think\Response
      */
-    public function update(Request $req, $id)
+    public function update(Request $req, Articles $art, $id)
     {
-        //
+        $data = $req->param();
+        
+        $file = $req->file();
+        if($file){
+
+            $article = Articles::get($id);
+            $path = \Env::get('root_path').'public'.$article->cover;
+            if(is_file($path)){
+                unlink($path);
+            }
+
+            $file = $req->file('cover');
+            $rp = \Env::get('root_path');
+            $info = $file->move($rp.'public/upload');
+            $path = $rp.'public/upload/'.$info->getSaveName();
+            $image = Image::open($path);
+            $image->thumb(400,205,Image::THUMB_SCALING)->save($path);
+
+            $data['cover'] = '/upload/'.$info->getSaveName();
+        }
+        $res = $art->save($data, ['id'=>$id]);
+        if($res){
+            return $this->success('修改成功','/article');
+        }
+        return $this->error('修改失败');
     }
 
     /**
@@ -157,6 +226,13 @@ class Article extends Controller
      */
     public function delete($id)
     {
-        //
+        $art = Articles::get($id);
+        $path = \Env::get('root_path').'public'.$art->cover;
+        if(is_file($path)){
+            unlink($path);
+        }
+        $art->delete();
+        ArticlesTags::where('articles_id',$id)->delete();
+        return $this->success('删除成功');
     }
 }

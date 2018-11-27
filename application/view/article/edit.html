@@ -1,0 +1,107 @@
+{extend name="common/base"}
+{block name="title"}修改文章{/block}
+
+{block name="link"}
+<link rel="stylesheet" type="text/css" href="/static/css/simditor.css" />
+{/block}
+
+{block name="content"}
+<div class="am-u-md-12 am-u-sm-12">
+    <ol class="am-breadcrumb">
+        <li><a href="/" class="am-icon-home">首页</a></li>
+        <li>系统管理</li>
+        <li class="am-active">修改文章</li>
+    </ol>
+    <form class="am-form am-form-horizontal" action="/article/update/id/{$article.id}.html" method="POST" enctype="multipart/form-data">
+        <div class="am-form-group">
+            <label for="doc-ipt-3" class="am-u-sm-1 am-form-label">标题</label>
+            <div class="am-u-sm-11">
+                <input type="text" value="{$article.title}" name="title" id="doc-ipt-3" placeholder="请输入你的标题">
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label for="doc-ipt-3" class="am-u-sm-1 am-form-label">简介</label>
+            <div class="am-u-sm-11">
+                <textarea name="desc" id="" value="{$article.desc}" cols="30" rows="5">{$article.desc}</textarea>
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label for="doc-ipt-3" class="am-u-sm-1 am-form-label">分类</label>
+            <div class="am-u-sm-11">
+                <select name="sort_id" id="">
+                    {foreach $sorts as $k => $v}
+                    <option value="{$v.id}" {if $v.id == $article.sort_id}selected{/if}>{$v.sort_name}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label for="doc-ipt-3" class="am-u-sm-1 am-form-label">封面</label>
+            <div class="am-u-sm-11 am-form-file">
+                <button type="button" class="am-btn am-btn-primary am-btn-sm">
+                    <i class="am-icon-cloud-upload"></i> 选择要上传的文件
+                </button>
+                <input onchange="chooseImage(this)" name="cover" id="doc-form-file" type="file" multiple>
+                <br>
+                <img style="max-width:100px;max-height:100px;" id="yulan" src="{$article.cover}" alt="">
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label for="doc-ipt-3" class="am-u-sm-1 am-form-label">内容</label>
+            <div class="am-u-sm-11">
+                <textarea value="{$article.content}" name="content" id="editor" placeholder="Balabala" autofocus>{$article.content}</textarea>
+            </div>
+        </div>
+        <div class="am-form-group">
+            <div class="am-u-sm-1"></div>
+            <div class="am-u-sm-11">
+                <input type="submit" value="提交" class="am-btn am-btn-primary">
+            </div>
+        </div>
+    </form>
+</div>
+
+{/block}
+
+{block name="js"}
+<script type="text/javascript" src="/static/js/module.js"></script>
+<script type="text/javascript" src="/static/js/hotkeys.js"></script>
+<script type="text/javascript" src="/static/js/uploader.js"></script>
+<script type="text/javascript" src="/static/js/simditor.js"></script>
+<script>
+    function check() {
+        console.log($('#editor').val())
+    }
+    var editor = new Simditor({
+        textarea: $('#editor'),
+        upload: false,
+        tabIndent: true,
+        toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', 'ol', 'ul', 'blockquote', 'code', 'table', 'link', 'image', 'hr', 'indent', 'outdent', 'alignment'],
+        defaultImage: '/static/i/favicon.png',
+        tabIndent: true,
+        upload: {
+            url: '/article/image.html',
+            params: null,
+            fileKey: 'image',
+            connectionCount: 1,
+            leaveConfirm: '确定要离开吗',
+        },
+        cleanPaste: true,
+    });
+    function chooseImage(a) {
+        //获取文件
+        var file = $(a)[0].files[0];
+        //创建读取文件的对象
+        var reader = new FileReader();
+        //创建文件读取相关的变量
+        var imgFile;
+        //为文件读取成功设置事件
+        reader.onload = function (e) {
+            imgFile = e.target.result;
+            $("#yulan").attr('src', imgFile);
+        };
+
+        reader.readAsDataURL(file)
+    }
+</script>
+{/block}

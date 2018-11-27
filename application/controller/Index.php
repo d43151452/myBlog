@@ -3,6 +3,8 @@ namespace app\controller;
 
 use think\Controller;
 use think\Request;
+use app\model\Articles;
+use app\model\Tags;
 
 class Index extends Controller
 {
@@ -13,7 +15,9 @@ class Index extends Controller
      */
     public function index()
     {
-        return view();
+        $data['articles'] = Articles::order('id', 'desc')->paginate(10);
+        $data['tags'] = Tags::select();
+        return view('',$data);
     }
 
     /**

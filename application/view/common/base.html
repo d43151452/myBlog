@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{block name="title"}张亚泽个人博客{/block}</title>
+    <title>{block name="title"}汝河泫泽{/block}</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="icon" type="image/png" href="/static/i/favicon.png">
@@ -44,26 +44,25 @@
                         分类 <span class="am-icon-caret-down"></span>
                     </a>
                     <ul class="am-dropdown-content">
-                        <li><a href="lw-index.html">1. blog-index-standard</a></li>
+                        {foreach :model('sorts')->select() as $k => $v}
+                        <li><a href="#">{$v.sort_name}</a></li>
+                        {/foreach}
                     </ul>
                 </li>
-                <li><a href="lw-article.html">标准文章</a></li>
-                <li><a href="lw-img.html">图片库</a></li>
-                <li><a href="lw-article-fullwidth.html">全宽页面</a></li>
                 {if !session('login')}
-                <li><a href="index/login.html">作者登录</a></li>
+                <li><a href="/index/login.html">作者登录</a></li>
                 {else}
                 <li class="am-dropdown" data-am-dropdown>
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
                         系统管理 <span class="am-icon-caret-down"></span>
                     </a>
                     <ul class="am-dropdown-content">
-                        <li><a href="sort.html">分类管理</a></li>
-                        <li><a href="article.html">文章管理</a></li>
-                        <li><a href="tag.html">标签管理</a></li>
+                        <li><a href="/sort.html">分类管理</a></li>
+                        <li><a href="/article.html">文章管理</a></li>
+                        <li><a href="/tag.html">标签管理</a></li>
                     </ul>
                 </li>
-                <li><a href="index/logout.html">退出</a></li>
+                <li><a href="/index/logout.html">退出</a></li>
                 {/if}
             </ul>
             <form class="am-topbar-form am-topbar-right am-form-inline" role="search">
@@ -85,38 +84,29 @@
 
     <footer class="blog-footer">
         <div class="am-g am-g-fixed blog-fixed am-u-sm-centered blog-footer-padding">
-            <div class="am-u-sm-12 am-u-md-4- am-u-lg-4">
-                <h3>模板简介</h3>
-                <p class="am-text-sm">这是一个使用amazeUI做的简单的前端模板。<br> 博客/ 资讯类 前端模板 <br> 支持响应式，多种布局，包括主页、文章页、媒体页、分类页等<br>嗯嗯嗯，不知道说啥了。外面的世界真精彩<br><br>
-                    Amaze UI 使用 MIT 许可证发布，用户可以自由使用、复制、修改、合并、出版发行、散布、再授权及贩售 Amaze UI 及其副本。</p>
-            </div>
-            <div class="am-u-sm-12 am-u-md-4- am-u-lg-4">
-                <h3>社交账号</h3>
-                <p>
-                    <a href=""><span class="am-icon-qq am-icon-fw am-primary blog-icon blog-icon"></span></a>
-                    <a href=""><span class="am-icon-github am-icon-fw blog-icon blog-icon"></span></a>
-                    <a href=""><span class="am-icon-weibo am-icon-fw blog-icon blog-icon"></span></a>
-                    <a href=""><span class="am-icon-reddit am-icon-fw blog-icon blog-icon"></span></a>
-                    <a href=""><span class="am-icon-weixin am-icon-fw blog-icon blog-icon"></span></a>
+            <div class="am-u-sm-12 am-u-md-6- am-u-lg-6">
+                <h3>网站简介</h3>
+                <p class="am-text-sm">
+                    本博客建于2018-11-26 <br>
+                    采用各类框架构建的响应式博客 <br>
+                    时隔入门IT一年两个月，肚子里的东西也已经有了一些 <br>
+                    不想永远做一个伸手党，虽然现在网络信息真的很发达 <br>
+                    博客中如果有任何不妥的地方，欢迎各方大神指教 (｀・ω・´) 
                 </p>
-                <h3>Credits</h3>
-                <p>我们追求卓越，然时间、经验、能力有限。Amaze UI 有很多不足的地方，希望大家包容、不吝赐教，给我们提意见、建议。感谢你们！</p>
             </div>
-            <div class="am-u-sm-12 am-u-md-4- am-u-lg-4">
-                <h1>我们站在巨人的肩膀上</h1>
-                <h3>Heroes</h3>
+            <div class="am-u-sm-12 am-u-md-6- am-u-lg-6">
+                <h3>本站由以下框架开发完成</h3>
                 <p>
                     <ul>
-                        <li>jQuery</li>
-                        <li>Zepto.js</li>
-                        <li>Seajs</li>
-                        <li>LESS</li>
+                        <li><a target="_blank" href="http://www.thinkphp.cn/">thinkPHP v5.1</a></li>
+                        <li><a target="_blank" href="http://amazeui.org/">amaze-UI v2.7.2</a></li>
+                        <li><a target="_blank" href="https://simditor.tower.im/"></a>simditor</li>
+                        <li><a target="_blank" href="https://highlightjs.org/">highlightjs</a></li>
                         <li>...</li>
                     </ul>
                 </p>
             </div>
         </div>
-        <div class="blog-text-center">© 2015 AllMobilize, Inc. Licensed under MIT license. Made with love By LWXYFER</div>
     </footer>
 
 

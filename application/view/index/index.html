@@ -3,118 +3,33 @@
 <!-- content srart -->
 
 {block name="content"}
-    <div class="am-u-md-8 am-u-sm-12">
+<div class="am-u-md-8 am-u-sm-12">
+    <ol class="am-breadcrumb">
+        <li><a href="/" class="am-active am-icon-home">首页</a></li>
+    </ol>
+    {foreach $articles as $k => $v}
+    <article class="am-g blog-entry-article">
+        <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+            <img src="{$v.cover}" alt="" class="am-u-sm-12">
+        </div>
+        <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+            <span><a href="javascript:;" class="blog-color">张亚泽 &nbsp;</a></span>
+            <span> @汝河泫泽 &nbsp;</span>
+            <span>{$v.create_time}</span>
+            <h1><a href="/article/read/id/{$v.id}.html">{$v.title}</a></h1>
+            <p>{$v.desc}</p>
+            <p><a href="" class="blog-continue">continue reading</a></p>
+            <div>
+                {foreach $v->tags as $k2 => $v2}
+                <a style="font-size:12px;" href="#" class="blog-tag">{$v2.tag_name}</a>
+                {/foreach}
+            </div>
+        </div>
+    </article>
+    {/foreach}
 
-        <article class="am-g blog-entry-article">
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                <img src="/static/i/f10.jpg" alt="" class="am-u-sm-12">
-            </div>
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
-                <span><a href="" class="blog-color">article &nbsp;</a></span>
-                <span> @amazeUI &nbsp;</span>
-                <span>2015/10/9</span>
-                <h1><a href="">总在思考一句积极的话</a></h1>
-                <p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。
-                </p>
-                <p><a href="" class="blog-continue">continue reading</a></p>
-            </div>
-        </article>
-
-        <article class="am-g blog-entry-article">
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                <img src="/static/i/f6.jpg" alt="" class="am-u-sm-12">
-            </div>
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
-                <span><a href="" class="blog-color">article&nbsp;</a></span>
-                <span>@amazeUI &nbsp;</span>
-                <span>2015/10/9</span>
-                <h1><a href="">选择的正确性</a></h1>
-                <p>你可以选择在原处不停地跟周遭不解的人解释你为何这么做，让他们理解你，你可以选择什么都不讲，自顾自往前走。
-                </p>
-                <p><a href="" class="blog-continue">continue</a></p>
-            </div>
-        </article>
-
-        <article class="am-g blog-entry-article">
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                <img src="/static/i/f12.jpg" alt="" class="am-u-sm-12">
-            </div>
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
-                <span><a href="" class="blog-color">article&nbsp;</a></span>
-                <span>@amazeUI</span>
-                <span>2015/10/9</span>
-                <h1><a href="">开心时拥抱全世界</a></h1>
-                <p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。我们就在骑楼下躲雨，看绿色的邮筒孤独地站在街的对面。
-                </p>
-                <p><a href="" class="blog-continue">continue</a></p>
-            </div>
-        </article>
-
-        <article class="am-g blog-entry-article">
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                <img src="/static/i/f13.jpg" alt="" class="am-u-sm-12">
-            </div>
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
-                <span><a href="" class="blog-color">article&nbsp;</a></span>
-                <span>@amazeUI</span>
-                <span>2015/10/9</span>
-                <h1><a href="">总以为机会无限</a></h1>
-                <p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。我们就在骑楼下躲雨，看绿色的邮筒孤独地站在街的对面。
-                </p>
-                <p><a href="" class="blog-continue">continue</a></p>
-            </div>
-        </article>
-
-        <article class="am-g blog-entry-article">
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                <img src="/static/i/f10.jpg" alt="" class="am-u-sm-12">
-            </div>
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
-                <span><a href="" class="blog-color">article&nbsp;</a></span>
-                <span> @amazeUI &nbsp;</span>
-                <span>2015/10/9</span>
-                <h1><a href="">GIVE ME SOME BIG TEXT AND FONT </a></h1>
-                <p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。我们就在骑楼下躲雨，看绿色的邮筒孤独地站在街的对面。
-                </p>
-                <p><a href="" class="blog-continue">continue reading</a></p>
-            </div>
-        </article>
-
-        <article class="am-g blog-entry-article">
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                <img src="/static/i/f10.jpg" alt="" class="am-u-sm-12">
-            </div>
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
-                <span><a href="" class="blog-color">article&nbsp;</a></span>
-                <span> @amazeUI &nbsp;</span>
-                <span>2015/10/9</span>
-                <h1><a href="">taha cool man i do believe</a></h1>
-                <p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。我们就在骑楼下躲雨，看绿色的邮筒孤独地站在街的对面。
-                </p>
-                <p><a href="" class="blog-continue">continue reading</a></p>
-            </div>
-        </article>
-
-        <article class="am-g blog-entry-article">
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                <img src="/static/i/f10.jpg" alt="" class="am-u-sm-12">
-            </div>
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
-                <span><a href="" class="blog-color">article&nbsp;</a></span>
-                <span> @amazeUI &nbsp;</span>
-                <span>2015/10/9</span>
-                <h1><a href="">taha cool man i do believe</a></h1>
-                <p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。我们就在骑楼下躲雨，看绿色的邮筒孤独地站在街的对面。
-                </p>
-                <p><a href="" class="blog-continue">continue reading</a></p>
-            </div>
-        </article>
-
-        <ul class="am-pagination">
-            <li class="am-pagination-prev"><a href="">&laquo; Prev</a></li>
-            <li class="am-pagination-next"><a href="">Next &raquo;</a></li>
-        </ul>
-    </div>
-    {include file="common/zujian" /}
+    {$articles|raw}
+</div>
+{include file="common/zujian" /}
 {/block}
 <!-- content end -->
