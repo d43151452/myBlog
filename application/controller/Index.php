@@ -39,7 +39,7 @@ class Index extends Controller
      */
     public function doLogin(Request $req)
     {
-        if($req->uname != 'zyz' || $req->pwd != 'mimaSHI0104'){
+        if($req->uname != 'zyz' || md5($req->pwd) != '07a385d5a1b30e61491d695146f9182b'){
             return $this->error('请输入正确的账号或密码');
         }
         session('login','success');
