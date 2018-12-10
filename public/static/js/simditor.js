@@ -4626,7 +4626,6 @@ ImageButton = (function(superClass) {
         $img.attr({
           src: src,
           width: width,
-          height: height,
           'data-image-size': width + ',' + height
         }).removeClass('loading');
         if ($img.hasClass('uploading')) {
@@ -5358,7 +5357,7 @@ TableButton = (function(superClass) {
 
   TableButton.prototype.createTable = function(row, col, phBr) {
     var $table, $tbody, $td, $thead, $tr, c, k, l, r, ref, ref1;
-    $table = $('<table/>');
+    $table = $('<table/>').addClass('am-table am-table-bordered am-table-radius am-table-striped');
     $thead = $('<thead/>').appendTo($table);
     $tbody = $('<tbody/>').appendTo($table);
     for (r = k = 0, ref = row; 0 <= ref ? k < ref : k > ref; r = 0 <= ref ? ++k : --k) {
