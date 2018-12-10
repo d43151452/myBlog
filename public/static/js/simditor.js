@@ -4851,8 +4851,7 @@ ImagePopover = (function(superClass) {
     }
     if (!onlySetVal) {
       this.target.attr({
-        width: width,
-        height: height
+        width: width
       });
       return this.editor.trigger('valuechanged');
     }
@@ -5357,7 +5356,7 @@ TableButton = (function(superClass) {
 
   TableButton.prototype.createTable = function(row, col, phBr) {
     var $table, $tbody, $td, $thead, $tr, c, k, l, r, ref, ref1;
-    $table = $('<table/>').addClass('am-table am-table-bordered am-table-radius am-table-striped');
+    $table = $('<table/>');
     $thead = $('<thead/>').appendTo($table);
     $tbody = $('<tbody/>').appendTo($table);
     for (r = k = 0, ref = row; 0 <= ref ? k < ref : k > ref; r = 0 <= ref ? ++k : --k) {
