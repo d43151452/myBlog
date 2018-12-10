@@ -6,6 +6,38 @@
 <link rel="stylesheet" href="/static/styles/default.css">
 <script src="/static/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
+<style>
+    .emoji{
+        position: relative;
+    }
+    .emoji-list{
+        display: none;
+        width: 400px;
+        height: 200px;
+        border: 1px solid #ccc;
+        position: absolute;
+        top: 55px;
+        background-color: #fff;
+        left: 85px;
+    }
+    .emoji-list p{
+        border-bottom: 1px solid #ccc;
+        padding: 10px;
+        margin: 0;
+    }
+    .emoji-list p a{
+        float: right;
+        color: #fff;
+        clear: both;
+    }
+    .emoji-list .emoji-list-img{
+        height: 154px;
+        overflow-y: scroll;
+    }
+    .emoji-list .emoji-list-img img{
+        cursor: pointer;
+    }
+</style>
 {/block}
 
 {block name="content"}
@@ -67,22 +99,22 @@
         <ul class="am-comments-list am-comments-list-flip">
             {foreach $comments as $k => $v}
             <li class="am-comment">
-                <a target="_blank" href="{$v.url|default="javascript:alert('对方并没有留下自己的地址');"}">
+                <a target="_blank" href="{$v.url|default=" javascript:alert('对方并没有留下自己的地址');"}">
                     <img src="/static/i/total_avatar.png" alt="" class="am-comment-avatar" width="48" height="48" />
                 </a>
 
                 <div class="am-comment-main">
                     <div class="am-comment-hd">
                         <div class="am-comment-meta">
-                            <a target="_blank" href="{$v.url|default="javascript:alert('对方并没有留下自己的地址');"}" class="am-comment-author">{$v.nick_name}</a>
+                            <a target="_blank" href="{$v.url|default=" javascript:alert('对方并没有留下自己的地址');"}" class="am-comment-author">{$v.nick_name}</a>
                             评论于 <time>{$v.create_time}</time>
                         </div>
                     </div>
 
                     <div class="am-comment-bd">
-                        <p>{$v.content}</p>
+                        <p>{$v.content|raw}</p>
                         {if $v.reply}
-                        <blockquote>作者回复：{$v.reply}</blockquote>
+                        <blockquote>作者回复：{$v.reply|raw}</blockquote>
                         {/if}
                     </div>
                 </div>
@@ -105,11 +137,24 @@
                 </div>
 
                 <div class="am-form-group">
-                    <textarea name="content" maxlength="255" class="" rows="5" placeholder="一字千金"></textarea>
+                    <div class="emoji">
+                        <a href="javascript:showEmoji();" class="am-btn am-btn-primary am-btn-sm">添加表情</a>
+                        <div class="emoji-list">
+                            <p>请选择表情 <a href="javascript:hideEmoji();" class="am-btn am-btn-warning am-btn-sm">关闭</a></p>
+                            <div class="emoji-list-img">
+                                {for start="1" end="100"}
+                                <img src="/static/qq/{$i}.gif" alt="" onclick="addEmoji('{$i}')">
+                                {/for}
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <textarea id="content_ta" style="height:300px; margin-top:20px;" name="content" maxlength="255" class="" rows="5" placeholder="一字千金"></textarea>
                 </div>
                 <div class="am-form-group">
-                        <img style="width: 200px;display: inline-block;" src="{:captcha_src()}" alt="captcha" onclick="this.src='/captcha.html?r='+Math.random()" />
-                        <input style="width: 200px;display: inline-block;" name="captcha" type="text" class="" required placeholder="请输入验证码">
+                    <img style="width: 200px;display: inline-block;" src="{:captcha_src()}" alt="captcha" onclick="this.src='/captcha.html?r='+Math.random()" />
+                    <input style="width: 200px;display: inline-block;" name="captcha" type="text" class="" required
+                        placeholder="请输入验证码">
                 </div>
                 <p><button type="submit" class="am-btn am-btn-default">发表评论</button></p>
             </fieldset>
@@ -123,5 +168,16 @@
 {/block}
 
 {block name="js"}
-
+<script>
+    function showEmoji() {
+        $('.emoji-list').show();
+    }
+    function hideEmoji(){
+        $('.emoji-list').hide();
+    }
+    function addEmoji(id){
+        let val = $('#content_ta').val();
+        $('#content_ta').val(val+'[:EM'+id+']');
+    }
+</script>
 {/block}

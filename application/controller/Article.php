@@ -148,6 +148,15 @@ class Article extends Controller
     public function comment(Request $req, $id)
     {
         $data = $req->post();
+        $reg = '/\[:EM(\d+)\]/';
+        $count = preg_match_all($reg, $data['content'], $arr);
+        if($count){
+            foreach($arr[1] as $k => $v){
+                if($v>100 || $v <1){
+                    return $this->error('您选择的表情似乎有问题');
+                }
+            }
+        }
         $val = [
             'nick_name|昵称'=>'require|max:10',
             'content|内容'=>'require|max:255',
@@ -165,6 +174,7 @@ class Article extends Controller
         if(!$validate->check($data)){
             return $this->error($validate->getError());
         }
+        
         $data['articles_id'] = $id;
         Articles::where('id', $id)->setInc('comments');
         $info = Comments::create($data);
