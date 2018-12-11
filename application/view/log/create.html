@@ -1,0 +1,62 @@
+{extend name="common/base"}
+
+{block name="link"}{/block}
+
+{block name="content"}
+<div class="am-u-md-12 am-u-sm-12">
+    <ol class="am-breadcrumb">
+        <li><a href="/" class="am-icon-home">首页</a></li>
+        <li>更新记录</li>
+        <li>新增记录</li>
+    </ol>
+    <div>
+    </div>
+    <div class="am-u-md-8 am-u-sm-12">
+        <form class="am-form am-form-horizontal" action="/log/save.html" method="POST" enctype="multipart/form-data">
+            <div class="am-form-group">
+                <label for="doc-ipt-3" class="am-u-sm-2 am-form-label">年:</label>
+                <div class="am-u-sm-10">
+                    <input type="text" name="year" id="doc-ipt-3">
+                </div>
+            </div>
+            <div class="am-form-group">
+                <label for="doc-ipt-3" class="am-u-sm-2 am-form-label">月:</label>
+                <div class="am-u-sm-10">
+                    <input type="text" name="month" id="doc-ipt-3">
+                </div>
+            </div>
+            <div class="am-form-group">
+                <label for="doc-ipt-3" class="am-u-sm-2 am-form-label">日:</label>
+                <div class="am-u-sm-10">
+                    <input type="text" name="day" id="doc-ipt-3">
+                </div>
+            </div>
+            <div class="am-form-group">
+                <label for="doc-ipt-3" class="am-u-sm-2 am-form-label">记录:</label>
+                <div class="am-u-sm-10">
+                    <input type="text" name="detail" id="doc-ipt-3">
+                </div>
+            </div>
+            <div class="am-form-group">
+                <label for="doc-ipt-3" class="am-u-sm-2 am-form-label">类型:</label>
+                <div class="am-u-sm-10">
+                    <input type="text" name="type" id="doc-ipt-3">
+                </div>
+            </div>
+            <div class="am-form-group">
+                <div class="am-u-sm-2"></div>
+                <div class="am-u-sm-10">
+                    <input type="submit" value="提交" class="am-btn am-btn-primary">
+                    <a href="/log.html" class="am-btn am-btn-primary">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    {include file="common/zujian"}
+</div>
+
+{/block}
+
+{block name="js"}
+
+{/block}

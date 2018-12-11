@@ -1,0 +1,58 @@
+{extend name="common/base"}
+
+
+{block name="content"}
+<div class="am-u-md-12 am-u-sm-12">
+    <ol class="am-breadcrumb">
+        <li><a href="/" class="am-icon-home">首页</a></li>
+        <li>网站更新记录</li>
+    </ol>
+    {if $login}
+    <div>
+        <a href="/log/create.html" class="am-btn am-btn-primary">新增</a>
+    </div>
+    {/if}
+    <div class="am-u-md-8 am-u-sm-12">
+        <div class="am-u-sm-12">
+            {foreach $logs_y as $k => $v}
+            <div class="timeline-year">
+                <h1>{$v.year}</h1>
+                <hr>
+                {foreach $logs_m as $k2 => $v2}
+                {if $v2.year == $v.year}
+                <ul>
+                    <br>
+                    <h3>{$v2.month}</h3>
+                    <hr>
+                    {foreach $logs_d as $k3 => $v3}
+                    {if $v3.month == $v2.month}
+                    <li>
+                        <span class="am-u-sm-4 am-u-md-2 timeline-span">{$v3.date}</span>
+                        <span class="am-u-sm-8 am-u-md-6">{$v3.detail}</span>
+                        <span class="am-u-sm-4 am-u-md-2 am-hide-sm-only">{$v3.type}</span>
+                        {if !$login}
+                        <span class="am-u-sm-4 am-u-md-2 am-hide-sm-only">张亚泽</span>
+                        {else}
+                        <span class="am-u-sm-4 am-u-md-2 am-hide-sm-only"><a class="am-btn am-btn-danger" href="/log/delete/id/{$v3.id}.html">删除</a></span>
+                        {/if}
+                    </li>
+                    <br>
+                    {/if}
+                    {/foreach}
+                </ul>
+                <br>
+                {/if}
+                {/foreach}
+            </div>
+            {/foreach}
+            <hr>
+        </div>
+    </div>
+    {include file="common/zujian"}
+</div>
+
+{/block}
+
+{block name="js"}
+
+{/block}
