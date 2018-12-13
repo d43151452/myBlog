@@ -10,15 +10,14 @@
     {foreach $articles as $k => $v}
     <article class="am-g blog-entry-article">
         <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-            <img src="{$v.cover}" alt="" class="am-u-sm-12">
+            <a href="/article/read/id/{$v.id}.html"><img src="{$v.cover}" alt="" class="am-u-sm-12"></a>
         </div>
         <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
             <span><a href="javascript:;" class="blog-color">张亚泽 &nbsp;</a></span>
             <span> @<a href="/index/sort/id/{$v.id}.html">{$v.sorts.sort_name}</a> &nbsp;</span>
             <span>{$v.create_time}</span>
             <h1><a href="/article/read/id/{$v.id}.html">{$v.title}</a></h1>
-            
-            <p>{$v.desc}</p>
+            <p><a href="/article/read/id/{$v.id}.html">{$v.desc}</a></p>
             <p><a href="" class="blog-continue">continue reading</a></p>
             <div>
                 {foreach $v->tags as $k2 => $v2}

@@ -24,7 +24,7 @@
     {block name="link"}{/block}
 </head>
 
-<body id="blog">
+<body id="blog">      
     <div style="background-image:url(/static/i/bj.jpg);border-top: 1px solid #fff;">
         <header class="am-g am-g-fixed blog-fixed blog-text-center blog-header">
             <div class="am-u-sm-8 am-u-sm-centered">
@@ -111,6 +111,9 @@
             </div>
         </div>
     </footer>
+    <div class="go-top am-show-lg-only" onclick="smoothscroll()">
+        回到顶部 ↑
+    </div>
 
 
 
@@ -125,6 +128,15 @@
     <script src="/static/js/amazeui.min.js"></script>
     <!-- <script src="/static/js/app.js"></script> -->
     {block name="js"}{/block}
+    <script>
+    function smoothscroll(){
+        var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        if (currentScroll > 0) {
+            window.requestAnimationFrame(smoothscroll);
+            window.scrollTo (0,currentScroll - (currentScroll/5));
+        }
+    }
+    </script>
 </body>
 
 </html>
