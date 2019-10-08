@@ -17,7 +17,7 @@ class Index extends Controller
     public function index()
     {
         $data['articles'] = Articles::order('id', 'desc')->paginate(5);
-        $data['tags'] = Tags::order('update_time','desc')->select();
+        $data['tags'] = Tags::select();
         return view('',$data);
     }
 

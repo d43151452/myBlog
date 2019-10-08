@@ -13,7 +13,7 @@
     <div class="blog-clear-margin blog-sidebar-widget blog-bor am-g ">
         <h2 class="blog-title"><span>TAG cloud</span></h2>
         <div class="am-u-sm-12 blog-clear-padding">
-            {foreach :model('tags')->select() as $k => $v}
+            {foreach :model('tags')->order('update_time','desc')->select() as $k => $v}
             <a href="/index/tag/id/{$v.id}.html" class="blog-tag">{$v.tag_name}</a>
             {/foreach}
         </div>
